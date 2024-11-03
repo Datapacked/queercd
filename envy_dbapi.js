@@ -12,6 +12,9 @@ module.exports.GENDER = GENDER;
 
 // Redo all of this jazz
 
+/**
+ * @brief Initialized database
+ */
 module.exports.InitDB = () => {
   var database = better(DBNAME);
 
@@ -29,6 +32,14 @@ module.exports.InitDB = () => {
   database.close();
 };
 
+/**
+ * @brief Adds an envy post
+ * 
+ * @param {String} img_url 
+ * @param {BigInt} gender 
+ * @param {String} tags 
+ * @returns {BigInt} status
+ */
 module.exports.AddEnvy = (img_url, gender, tags) => {
   try {
     let db = better(DBNAME);
@@ -44,6 +55,12 @@ module.exports.AddEnvy = (img_url, gender, tags) => {
   return 200;
 };
 
+/**
+ * @brief Gets specific post
+ * 
+ * @param {BigInt} id 
+ * @returns {BigInt} status
+ */
 module.exports.GetPost = (id) => {
   // Sends N posts
   let db = better(DBNAME);
@@ -55,6 +72,12 @@ module.exports.GetPost = (id) => {
   return posts;
 };
 
+/**
+ * @brief Increments post score
+ * 
+ * @param {BigInt} id 
+ * @returns {BigInt} status
+ */
 module.exports.UpvotePost = (id) => {
   try {
     let db = better(DBNAME);
@@ -68,6 +91,12 @@ module.exports.UpvotePost = (id) => {
   return 200;
 };
 
+/**
+ * @brief Decrements post score
+ * 
+ * @param {BigInt} id 
+ * @returns {BigInt} status
+ */
 module.exports.DownvotePost = (id) => {
   try {
     let db = better(DBNAME);
@@ -81,7 +110,113 @@ module.exports.DownvotePost = (id) => {
   return 200;
 };
 
-module.exports.GetPostsAnd = (gender, tags, pagenum = 0, pagesize = 50) => {
+/**
+ * @brief Gets all posts
+ * 
+ * @param {BigInt} pagenum 
+ * @param {BigInt} pagesize 
+ * @returns {Object} posts
+ */
+module.exports.GetAllPosts = (pagenum = 0, pagesize = 50) => {
+  // Sends N posts
+  let db = better(DBNAME);
+  let query = (
+    "SELECT * FROM envy ORDER BY score DESC LIMIT " + pagesize + " OFFSET " +
+      pagenum * pagesize);
+  // console.log(query);
+  let select = db.prepare(query,);
+  let posts = select.all();
+  db.close();
+  return posts;
+};
+
+/**
+ * @brief Gets all posts of certain gender
+ * 
+ * @param {BigInt} gender 
+ * @param {BigInt} pagenum 
+ * @param {BigInt} pagesize 
+ * @returns {Object} posts
+ */
+module.exports.GetPostsGender = (gender, pagenum = 0, pagesize = 50) => {
+  // Sends N posts
+  let db = better(DBNAME);
+  let query = (
+    "SELECT * FROM envy WHERE gender == " +
+      gender +
+      " ORDER BY score DESC LIMIT " + pagesize + " OFFSET " +
+      pagenum * pagesize);
+  // console.log(query);
+  let select = db.prepare(query,);
+  let posts = select.all();
+  db.close();
+  return posts;
+};
+
+/**
+ * @brief Gets all posts that match all specified tags
+ * 
+ * @param {String} tags 
+ * @param {BigInt} pagenum 
+ * @param {BigInt} pagesize 
+ * @returns {Object} posts
+ */
+module.exports.GetPostsAnd = (tags, pagenum = 0, pagesize = 50) => {
+  // Sends N posts
+  let db = better(DBNAME);
+  var criteria = "";
+  tags.split(',').forEach((k, i) => {
+    criteria = criteria + " tags LIKE \'%" + k + "%\' AND";
+  });
+  criteria = criteria.substring(0, criteria.length - 4);
+  let query = (
+    "SELECT * FROM envy WHERE" + criteria +
+      " ORDER BY score DESC LIMIT " + pagesize + " OFFSET " +
+      pagenum * pagesize);
+  // console.log(query);
+  let select = db.prepare(query,);
+  let posts = select.all();
+  db.close();
+  return posts;
+};
+
+/**
+ * @brief Gets all posts that match one of the specified tags
+ * 
+ * @param {String} tags 
+ * @param {BigInt} pagenum 
+ * @param {BigInt} pagesize 
+ * @returns {Object} posts
+ */
+module.exports.GetPostsOr = (tags, pagenum = 0, pagesize = 50) => {
+  // Sends N posts
+  let db = better(DBNAME);
+  var criteria = "";
+  tags.split(',').forEach((k, i) => {
+    criteria = criteria + " tags LIKE \'%" + k + "%\' OR";
+  });
+  criteria = criteria.substring(0, criteria.length - 4);
+  let query = (
+    "SELECT * FROM envy WHERE" + criteria +
+      " ORDER BY score DESC LIMIT " + pagesize + " OFFSET " +
+      pagenum * pagesize);
+  // console.log(query);
+  let select = db.prepare(query,);
+  let posts = select.all();
+  db.close();
+  return posts;
+};
+
+/**
+ * @brief Gets all posts that have a certain gender and match all specified tags
+ * 
+ * @param {BigInt} gender 
+ * @param {String} tags 
+ * @param {BigInt} pagenum 
+ * @param {BigInt} pagesize 
+ * @returns {Object} posts
+ */
+module.exports.GetPostsGenderAnd = (gender, tags, pagenum = 0, pagesize = 50) => {
   // Sends N posts
   let db = better(DBNAME);
   var criteria = "";
@@ -101,7 +236,16 @@ module.exports.GetPostsAnd = (gender, tags, pagenum = 0, pagesize = 50) => {
   return posts;
 };
 
-module.exports.GetPostsOr = (gender, tags, pagenum = 0, pagesize = 50) => {
+/**
+ * @brief Gets all posts that have a certain gender and match one of the specified tags
+ * 
+ * @param {BigInt} gender 
+ * @param {String} tags 
+ * @param {BigInt} pagenum 
+ * @param {BigInt} pagesize 
+ * @returns {Object} posts
+ */
+module.exports.GetPostsGenderOr = (gender, tags, pagenum = 0, pagesize = 50) => {
   // Sends N posts
   let db = better(DBNAME);
   var criteria = "";
@@ -111,8 +255,8 @@ module.exports.GetPostsOr = (gender, tags, pagenum = 0, pagesize = 50) => {
   criteria = criteria.substring(0, criteria.length - 4);
   let query = (
     "SELECT * FROM envy WHERE gender == " +
-      gender + " AND" + criteria +
-      " ORDER BY score DESC LIMIT " + pagesize + " OFFSET " +
+      gender + " AND (" + criteria +
+      ") ORDER BY score DESC LIMIT " + pagesize + " OFFSET " +
       pagenum * pagesize);
   // console.log(query);
   let select = db.prepare(query,);
