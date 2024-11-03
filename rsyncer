@@ -1,0 +1,3 @@
+#!/bin/bash
+
+rsync -av . mcserver@99.12.79.62:~/Documents/jss/js2.qsite
