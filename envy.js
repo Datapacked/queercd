@@ -17,6 +17,7 @@ router.post('/makeenvy', (req, res) => {
 
     // Process the form data (e.g., save to a database, send an email)
     console.log(img_url, tags, envy.GENDER[gender]);
+    envy.AddEnvy(img_url, envy.GENDER[gender], tags);
 
     res.send('Form submitted successfully!');
 });
