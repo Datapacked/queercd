@@ -1,0 +1,11 @@
+@font-face {
+    font-family: "Space Mono";
+    src: url('./fonts/SpaceMono/SpaceMono-Regular.ttf');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Product Sans";
+    src: url('./fonts/ProductSans/Product Sans Regular.ttf');
+    font-display: swap;
+}

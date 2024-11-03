@@ -1,0 +1,9 @@
+.infotitle {
+	text-align: center;
+	font-family: 'Product Sans';
+}
+
+.downloads > a {
+	text-align: center;
+	font-family: 'Space Mono';
+}

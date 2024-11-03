@@ -1,0 +1,17 @@
+#!/bin/bash
+
+while getopts "ab:df:v" flag; do
+  case "${flag}" in
+    a) a_flag="true" ;;
+    b) b_flag="true" ;;
+    d)  # Handle -d flag here
+        echo "Debug mode enabled"  # Example action
+        nodemon server.js
+        ;;
+  esac
+done
+
+if [[ $# -eq 0 ]]; then
+  node server.js
+  # Your default actions here
+fi

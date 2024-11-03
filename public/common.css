@@ -1,0 +1,33 @@
+@import url('./fonts.css');
+
+body {
+    margin: 0 0 0 0;
+}
+
+.content {
+    margin: 8px 8px 8px 8px;
+}
+
+.spacemono {
+    font-family: 'Space Mono';
+}
+
+.darkmode {
+    background-color: #121212;
+    color: whitesmoke;
+}
+
+/* a {
+    margin: 20px;
+    color: whitesmoke;
+    text-decoration: none;
+}
+
+a :visited {
+    color: whitesmoke;
+    text-decoration: none;
+} */
+
+ul {
+    font-family: 'Product Sans';
+}

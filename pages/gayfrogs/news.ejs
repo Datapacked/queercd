@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<link href="/common.css" rel="stylesheet" type="text/css">
+	<%- include('meta') %>
+	<body class="darkmode">
+		<%- include('navbar') %>
+		<div class="content">
+			<h1 class="spacemono">News:</h1>
+			<% if (items) { %>
+			<ul>
+				<% items.forEach(function(item) { %>
+					<li class="news-article-link"><a href="news/<%= item.replace('.ejs', '') %>"><%= item.replace('.ejs', '') %></a></li>
+				<% }); %>
+			</ul>
+			<% } else { %>
+				<p>No items found.</p>
+			<% } %>
+		</div>
+	</body>
+</html>
