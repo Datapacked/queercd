@@ -4,6 +4,11 @@ body {
     margin: 0 0 0 0;
 }
 
+.infotitle {
+	text-align: center;
+	font-family: 'Product Sans';
+}
+
 .content {
     margin: 8px 8px 8px 8px;
 }
