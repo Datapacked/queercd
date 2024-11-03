@@ -17,6 +17,9 @@ fs.readdir(newsFolder, (err, files) => {
 const keyboardsmash = require('./keyboard_smash');
 router.use('/keyboardsmash',  keyboardsmash);
 
+const envy = require('./envy');
+router.use('/envy', envy);
+
 // Reload articles
 router.get('/reload', (req, res) => {
 	NEWS_FILES.files = [];
@@ -49,7 +52,7 @@ router.get('/news', (req, res) => {
 
 router.get('/minecraft', (req, res) => {
 	res.status(200);
-	res.render('gayfrogs/minecraft', {items: NEWS_FILES.files});
+	res.render('gayfrogs/minecraft');
 });
 
 router.get('/news/*', (req, res) => {

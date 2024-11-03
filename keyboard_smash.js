@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const kb = require('./dbapi');
+const kb = require('./keyboard_smash_dbapi');
 
 kb.InitDB();
 

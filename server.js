@@ -1,4 +1,5 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 // const https = require('https');
 const fs = require('fs');
 const PORT = 27576;
@@ -14,7 +15,7 @@ const compression = require('compression');
 const app = express();
 
 app.use(express.static(__dirname + '/public'));
-
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(compression());
 
 const gayfrogs = require('./gayfrogs');

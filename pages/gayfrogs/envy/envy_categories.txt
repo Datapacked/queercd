@@ -1,0 +1,10 @@
+Genders:
+
+feminine
+masculine
+androgynous
+
+Categories:
+
+cat
+anime
