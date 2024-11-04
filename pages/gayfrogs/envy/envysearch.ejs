@@ -6,13 +6,7 @@
 		<%- include('../navbar') %>
 		<%- include('./envy-navbar') %>
 		<div class="envyform-container">
-			<form action="./makeenvy" method="POST" class="envyform">
-				<label for="input1">Image URL:</label>
-				<br/>
-				<input type="text" id="input1" name="input1" required>
-	
-				<br class="gap"/>
-			
+			<form action="./envysearch" method="POST" class="envyform">
 				<label for="input2">Tags (separate with commas (i.e. "tag 1,tag-2,tag_3,tag4")):</label>
 				<br/>
 				<input type="text" id="input2" name="input2">
@@ -26,9 +20,19 @@
 					<option value="androgynous">Androgynous</option>
 					<option value="masculine">Masculine</option>
 					<option value="agender">Agender</option>
+					<option value="any">Any</option>
+				</select>
+
+				<br class="gap"/>
+			
+				<label for="dropdown">Tag Mode (matches every tag or matches one of the tags):</label>
+				<br/>
+				<select id="dropdown2" name="dropdown2">
+					<option value="OR">OR</option>
+					<option value="AND">AND</option>
 				</select>
 			
-				<button type="submit">Submit</button>
+				<button type="submit">Search</button>
 			</form>
 		</div>
 	</body>

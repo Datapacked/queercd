@@ -3,47 +3,47 @@
 @import url('./fonts.css');
 
 a {
-    margin: 20px;
-    color: whitesmoke;
-    text-decoration: none;
+	margin: 20px;
+	color: whitesmoke;
+	text-decoration: none;
 }
 
 a :visited {
-    color: whitesmoke;
-    text-decoration: none;
+	color: whitesmoke;
+	text-decoration: none;
 }
 
 ul {
-    font-family: 'Product Sans';
+	font-family: 'Product Sans';
 }
 
 @media screen and (min-aspect-ratio: 1/1) {
-    .navbar * {
-        display: flex;
-        text-align: center;
-        align-items: center;
-        justify-content: center;
-        flex-grow: 1;  /* Allow items to grow proportionally */
-        flex-basis: 0;   /* Set initial size to 0 */
-        font-family: 'Space Mono';
-        color: whitesmoke;
-        background-color: #121212;
-        margin: 1vh 1vw 1vh 1vw;
-        height: 4vh;
-    }
+	.navbar * {
+		display: flex;
+		text-align: center;
+		align-items: center;
+		justify-content: center;
+		flex-grow: 1;  /* Allow items to grow proportionally */
+		flex-basis: 0;   /* Set initial size to 0 */
+		font-family: 'Space Mono';
+		color: whitesmoke;
+		background-color: #121212;
+		margin: 1vh 1vw 1vh 1vw;
+		height: 4vh;
+	}
 
-    .navbar {
-        top: 0;
-        left: 0;            /* Start from the leftmost point */
-        width: 100%;        /* Stretch horizontally across the entire screen */
-        /* Optional styles for the navbar */
-        background-color: #1a1a1a; /* Set a background color */
-        justify-content: space-between;
-        display: flex;
-        align-items: center;
-        padding: 0 0 0 0;
-        height: 7.5vh;
-    }
+	.navbar {
+		top: 0;
+		left: 0;			/* Start from the leftmost point */
+		width: 100%;		/* Stretch horizontally across the entire screen */
+		/* Optional styles for the navbar */
+		background-color: #1a1a1a; /* Set a background color */
+		justify-content: space-between;
+		display: flex;
+		align-items: center;
+		padding: 0 0 0 0;
+		height: 7.5vh;
+	}
 
 	.news-article-link {
 		height: min(max(3vh, 10px), 40px);
@@ -55,32 +55,32 @@ ul {
 }
 
 @media screen and (max-aspect-ratio: 1/1) {
-    .navbar * {
-        display: flex;
-        text-align: center;
-        align-items: center;
-        justify-content: center;
-        flex-grow: 1;  /* Allow items to grow proportionally */
-        flex-basis: 0;   /* Set initial size to 0 */
-        font-family: 'Space Mono';
-        color: whitesmoke;
-        background-color: #121212;
-        margin: 1vh 1vw 1vh 1vw;
-        height: 7.5vh;
-    }
+	.navbar * {
+		display: flex;
+		text-align: center;
+		align-items: center;
+		justify-content: center;
+		flex-grow: 1;  /* Allow items to grow proportionally */
+		flex-basis: 0;   /* Set initial size to 0 */
+		font-family: 'Space Mono';
+		color: whitesmoke;
+		background-color: #121212;
+		margin: 1vh 1vw 1vh 1vw;
+		height: 7.5vh;
+	}
 
-    .navbar {
-        top: 0;
-        left: 0;            /* Start from the leftmost point */
-        width: 100%;        /* Stretch horizontally across the entire screen */
-        /* Optional styles for the navbar */
-        background-color: #1a1a1a; /* Set a background color */
-        justify-content: space-between;
-        display: flex;
-        align-items: center;
-        padding: 0 0 0 0;
-        height: 12.5vh;
-    }
+	.navbar {
+		top: 0;
+		left: 0;			/* Start from the leftmost point */
+		width: 100%;		/* Stretch horizontally across the entire screen */
+		/* Optional styles for the navbar */
+		background-color: #1a1a1a; /* Set a background color */
+		justify-content: space-between;
+		display: flex;
+		align-items: center;
+		padding: 0 0 0 0;
+		height: 12.5vh;
+	}
 
 	.news-article-link {
 		height: min(max(5vh, 10px), 40px);

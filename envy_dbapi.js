@@ -22,10 +22,10 @@ module.exports.InitDB = () => {
   database.exec(`
 	CREATE TABLE IF NOT EXISTS envy(
 	  id INTEGER PRIMARY KEY,
-    gender INTEGER NOT NULL,
-    score INTEGER DEFAULT 0,
+	gender INTEGER NOT NULL,
+	score INTEGER DEFAULT 0,
 	  img_url TEXT NOT NULL,
-    tags TEXT NOT NULL
+	tags TEXT NOT NULL
 	) STRICT
   `);
 
@@ -42,15 +42,15 @@ module.exports.InitDB = () => {
  */
 module.exports.AddEnvy = (img_url, gender, tags) => {
   try {
-    let db = better(DBNAME);
-    let insert = db.prepare(
-    "INSERT or REPLACE INTO envy (img_url, gender, tags) VALUES (?, ?, ?)",
-    );
-    // Execute the prepared statement with bound values.
-    insert.run(img_url, gender, tags);
-    db.close();
+	let db = better(DBNAME);
+	let insert = db.prepare(
+	"INSERT or REPLACE INTO envy (img_url, gender, tags) VALUES (?, ?, ?)",
+	);
+	// Execute the prepared statement with bound values.
+	insert.run(img_url, gender, tags);
+	db.close();
   } catch {
-    return 500;
+	return 500;
   }
   return 200;
 };
@@ -80,13 +80,13 @@ module.exports.GetPost = (id) => {
  */
 module.exports.UpvotePost = (id) => {
   try {
-    let db = better(DBNAME);
-    let upvote = db.prepare("UPDATE envy SET score = score + 1 WHERE id = ?");
-    // Execute the prepared statement and bind values.
-    upvote.run(id);
-    db.close();
+	let db = better(DBNAME);
+	let upvote = db.prepare("UPDATE envy SET score = score + 1 WHERE id = ?");
+	// Execute the prepared statement and bind values.
+	upvote.run(id);
+	db.close();
   } catch {
-    return 500;
+	return 500;
   }
   return 200;
 };
@@ -99,13 +99,13 @@ module.exports.UpvotePost = (id) => {
  */
 module.exports.DownvotePost = (id) => {
   try {
-    let db = better(DBNAME);
-    let upvote = db.prepare("UPDATE envy SET score = score - 1 WHERE id = ?");
-    // Execute the prepared statement and bind values.
-    upvote.run(id);
-    db.close();
+	let db = better(DBNAME);
+	let upvote = db.prepare("UPDATE envy SET score = score - 1 WHERE id = ?");
+	// Execute the prepared statement and bind values.
+	upvote.run(id);
+	db.close();
   } catch {
-    return 500;
+	return 500;
   }
   return 200;
 };
@@ -121,8 +121,8 @@ module.exports.GetAllPosts = (pagenum = 0, pagesize = 50) => {
   // Sends N posts
   let db = better(DBNAME);
   let query = (
-    "SELECT * FROM envy ORDER BY score DESC LIMIT " + pagesize + " OFFSET " +
-      pagenum * pagesize);
+	"SELECT * FROM envy ORDER BY score DESC LIMIT " + pagesize + " OFFSET " +
+	  pagenum * pagesize);
   // console.log(query);
   let select = db.prepare(query,);
   let posts = select.all();
@@ -142,10 +142,10 @@ module.exports.GetPostsGender = (gender, pagenum = 0, pagesize = 50) => {
   // Sends N posts
   let db = better(DBNAME);
   let query = (
-    "SELECT * FROM envy WHERE gender == " +
-      gender +
-      " ORDER BY score DESC LIMIT " + pagesize + " OFFSET " +
-      pagenum * pagesize);
+	"SELECT * FROM envy WHERE gender == " +
+	  gender +
+	  " ORDER BY score DESC LIMIT " + pagesize + " OFFSET " +
+	  pagenum * pagesize);
   // console.log(query);
   let select = db.prepare(query,);
   let posts = select.all();
@@ -166,13 +166,13 @@ module.exports.GetPostsAnd = (tags, pagenum = 0, pagesize = 50) => {
   let db = better(DBNAME);
   var criteria = "";
   tags.split(',').forEach((k, i) => {
-    criteria = criteria + " tags LIKE \'%" + k + "%\' AND";
+	criteria = criteria + " tags LIKE \'%" + k + "%\' AND";
   });
   criteria = criteria.substring(0, criteria.length - 4);
   let query = (
-    "SELECT * FROM envy WHERE" + criteria +
-      " ORDER BY score DESC LIMIT " + pagesize + " OFFSET " +
-      pagenum * pagesize);
+	"SELECT * FROM envy WHERE" + criteria +
+	  " ORDER BY score DESC LIMIT " + pagesize + " OFFSET " +
+	  pagenum * pagesize);
   // console.log(query);
   let select = db.prepare(query,);
   let posts = select.all();
@@ -193,13 +193,13 @@ module.exports.GetPostsOr = (tags, pagenum = 0, pagesize = 50) => {
   let db = better(DBNAME);
   var criteria = "";
   tags.split(',').forEach((k, i) => {
-    criteria = criteria + " tags LIKE \'%" + k + "%\' OR";
+	criteria = criteria + " tags LIKE \'%" + k + "%\' OR";
   });
-  criteria = criteria.substring(0, criteria.length - 4);
+  criteria = criteria.substring(0, criteria.length - 3);
   let query = (
-    "SELECT * FROM envy WHERE" + criteria +
-      " ORDER BY score DESC LIMIT " + pagesize + " OFFSET " +
-      pagenum * pagesize);
+	"SELECT * FROM envy WHERE" + criteria +
+	  " ORDER BY score DESC LIMIT " + pagesize + " OFFSET " +
+	  pagenum * pagesize);
   // console.log(query);
   let select = db.prepare(query,);
   let posts = select.all();
@@ -221,14 +221,14 @@ module.exports.GetPostsGenderAnd = (gender, tags, pagenum = 0, pagesize = 50) =>
   let db = better(DBNAME);
   var criteria = "";
   tags.split(',').forEach((k, i) => {
-    criteria = criteria + " tags LIKE \'%" + k + "%\' AND";
+	criteria = criteria + " tags LIKE \'%" + k + "%\' AND";
   });
   criteria = criteria.substring(0, criteria.length - 4);
   let query = (
-    "SELECT * FROM envy WHERE gender == " +
-      gender + " AND" + criteria +
-      " ORDER BY score DESC LIMIT " + pagesize + " OFFSET " +
-      pagenum * pagesize);
+	"SELECT * FROM envy WHERE gender == " +
+	  gender + " AND" + criteria +
+	  " ORDER BY score DESC LIMIT " + pagesize + " OFFSET " +
+	  pagenum * pagesize);
   // console.log(query);
   let select = db.prepare(query,);
   let posts = select.all();
@@ -250,14 +250,14 @@ module.exports.GetPostsGenderOr = (gender, tags, pagenum = 0, pagesize = 50) => 
   let db = better(DBNAME);
   var criteria = "";
   tags.split(',').forEach((k, i) => {
-    criteria = criteria + " tags LIKE \'%" + k + "%\' OR";
+	criteria = criteria + " tags LIKE \'%" + k + "%\' OR";
   });
-  criteria = criteria.substring(0, criteria.length - 4);
+  criteria = criteria.substring(0, criteria.length - 3);
   let query = (
-    "SELECT * FROM envy WHERE gender == " +
-      gender + " AND (" + criteria +
-      ") ORDER BY score DESC LIMIT " + pagesize + " OFFSET " +
-      pagenum * pagesize);
+	"SELECT * FROM envy WHERE gender == " +
+	  gender + " AND (" + criteria +
+	  ") ORDER BY score DESC LIMIT " + pagesize + " OFFSET " +
+	  pagenum * pagesize);
   // console.log(query);
   let select = db.prepare(query,);
   let posts = select.all();

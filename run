@@ -2,12 +2,12 @@
 
 while getopts "ab:df:v" flag; do
   case "${flag}" in
-    a) a_flag="true" ;;
-    b) b_flag="true" ;;
-    d)  # Handle -d flag here
-        echo "Debug mode enabled"  # Example action
-        nodemon server.js
-        ;;
+	a) a_flag="true" ;;
+	b) b_flag="true" ;;
+	d)  # Handle -d flag here
+		echo "Debug mode enabled"  # Example action
+		nodemon server.js
+		;;
   esac
 done
 

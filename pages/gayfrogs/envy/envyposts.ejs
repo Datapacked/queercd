@@ -1,0 +1,61 @@
+<html>
+	<link href="/common.css" rel="stylesheet" type="text/css">
+	<link href="/css/envy.css" rel="stylesheet" type="text/css">
+	<link href="/css/envypost.css">
+	<head>
+		<script>
+			const urlParams = new URLSearchParams(window.location.search);
+			const currentPage = parseInt(urlParams.get('page'));
+
+			function incrementPage() {
+				var newPage = currentPage + 1;
+				if (Number.isNaN(newPage)) {
+					newPage = 1;
+				}
+				const urlParams = new URLSearchParams(window.location.search);
+				urlParams.set('page', newPage);
+
+				// Preserve other parameters
+				const otherParams = new URLSearchParams(window.location.search);
+				otherParams.delete('page'); // Remove the existing page parameter
+
+				// Combine the modified page parameter with other preserved parameters
+				otherParams.append('page', newPage);
+
+				const newUrl = `${window.location.pathname}?${otherParams.toString()}`;
+				window.location.href = newUrl;
+        	}
+
+			function decrementPage() {
+				var newPage = currentPage - 1;
+				if (Number.isNaN(newPage)) {
+					newPage = 0;
+				}
+				const urlParams = new URLSearchParams(window.location.search);
+				urlParams.set('page', newPage);
+
+				// Preserve other parameters
+				const otherParams = new URLSearchParams(window.location.search);
+				otherParams.delete('page'); // Remove the existing page parameter
+
+				// Combine the modified page parameter with other preserved parameters
+				otherParams.append('page', newPage);
+
+				const newUrl = `${window.location.pathname}?${otherParams.toString()}`;
+				window.location.href = newUrl;
+			}
+		</script>
+	</head>
+	<body class="darkmode">
+		<%- include('envy-subnavbar') %>
+		<button onclick="incrementPage()">Next Page</button>
+    	<button onclick="decrementPage()">Previous Page</button>
+		<% for (let item of items) { %>
+			<div class="post">
+				<a href="./envypost?id=<%= item['id'] %>">
+					<img src="<%= item['img_url'] %>" alt="<%= item['img_url'] %>"/>
+				</a>
+			</div>
+		<% } %>
+	</body>
+</html>

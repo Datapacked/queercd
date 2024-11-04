@@ -26,7 +26,7 @@ router.get('/reload', (req, res) => {
 	fs.readdir(newsFolder, (err, files) => {
 		files.forEach(item => {
 			if (item.endsWith('.ejs') || item.endsWith('.html')) {
-				NEWS_FILES.files.push(item);
+	NEWS_FILES.files.push(item);
 			}
 		})
 	});

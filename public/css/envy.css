@@ -1,31 +1,31 @@
 .envyform-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 10vh;
+	display: flex;
+	justify-content: center;
+	margin-top: 10vh;
 }
 
 @media screen and (min-aspect-ratio: 1/1) {
-    .envyform > label {
-        font-family: 'Space Mono';
-        margin-right: 2vw;
-        font-size: 2vw;
-    }
-    
-    .envyform > br {
-        margin-top: 4vh;
-        margin-bottom: 4vh;
-    }
+	.envyform > label {
+		font-family: 'Space Mono';
+		margin-right: 2vw;
+		font-size: 2vw;
+	}
+	
+	.envyform > .gap {
+		margin-top: 4vh;
+		margin-bottom: 4vh;
+	}
 }
 
 @media screen and (max-aspect-ratio: 1/1) {
-    .envyform > label {
-        font-family: 'Space Mono';
-        margin-right: 2vw;
-        font-size: 4vw;
-    }
-    
-    .envyform > br {
-        margin-top: 5vh;
-        margin-bottom: 5vh;
-    }
+	.envyform > label {
+		font-family: 'Space Mono';
+		margin-right: 2vw;
+		font-size: 4vw;
+	}
+	
+	.envyform > .gap {
+		margin-top: 5vh;
+		margin-bottom: 5vh;
+	}
 }
