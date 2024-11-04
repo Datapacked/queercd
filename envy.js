@@ -79,6 +79,7 @@ router.get('/envypost', (req, res) => {
 router.get('/allenvy', (req, res) => {
 	const body = req.query;
 	let data = envy.GetAllPosts(Number(body.page | 0));
+	data = sanitize(data);
 	res.render('gayfrogs/envy/envyposts', { items: data });
 });
 
@@ -86,6 +87,7 @@ router.get('/allenvy', (req, res) => {
 router.get('/genderenvy', (req, res) => {
 	const body = req.query;
 	let data = envy.GetPostsGender(envy.GENDER[body.gender], Number(body.page | 0));
+	data = sanitize(data);
 	res.render('gayfrogs/envy/envyposts', { items: data });
 });
 
@@ -106,6 +108,7 @@ router.get('/envytags', (req, res) => {
 			tags: ':3'
 		}];
 	}
+	data = sanitize(data);
 	res.render('gayfrogs/envy/envyposts', { items: data });
 });
 
@@ -126,6 +129,7 @@ router.get('/genderenvytags', (req, res) => {
 			tags: ':3'
 		}];
 	}
+	data = sanitize(data);
 	res.render('gayfrogs/envy/envyposts', { items: data });
 });
 
