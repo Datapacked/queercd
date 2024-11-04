@@ -1,0 +1,13 @@
+<html>
+	<link href="/common.css" rel="stylesheet" type="text/css">
+	<link href="/css/envy.css" rel="stylesheet" type="text/css">
+	<link href="/css/envypost.css">
+	<body class="darkmode">
+		<%- include('envy-subnavbar') %>
+		<div class="post">
+			<a href="./envypost?id=<%= item['id'] %>">
+				<img src="<%= item['img_url'] %>" alt="<%= item['img_url'] %>"/>
+			</a>
+		</div>
+	</body>
+</html>

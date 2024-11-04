@@ -58,7 +58,7 @@ router.post('/makeenvy', (req, res) => {
 router.get('/envypost', (req, res) => {
 	const body = req.query;
 	let data = envy.GetPost(Number(body.id | 0));
-	res.send(data);
+	res.render('gayfrogs/envy/envypost', { item: data[0] });
 })
 
 // Returns all envy, page specified with page query
@@ -80,7 +80,6 @@ router.get('/genderenvy', (req, res) => {
 router.get('/envytags', (req, res) => {
 	const body = req.query;
 	var data;
-	console.log(body.mode);
 	if (body.mode == "AND") {
 		data = envy.GetPostsAnd(body.tags, Number(body.page | 0));
 	} else if (body.mode == "OR") {
@@ -101,7 +100,6 @@ router.get('/envytags', (req, res) => {
 router.get('/genderenvytags', (req, res) => {
 	const body = req.query;
 	var data;
-	console.log(body.mode);
 	if (body.mode == "AND") {
 		data = envy.GetPostsGenderAnd(envy.GENDER[body.gender], body.tags, Number(body.page | 0));
 	} else if (body.mode == "OR") {
