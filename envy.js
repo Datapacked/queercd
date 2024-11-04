@@ -1,9 +1,23 @@
 const express = require('express');
 const router = express.Router();
 
+const createDOMPurify = require('dompurify');
+const { JSDOM } = require('jsdom');
+
+const window = new JSDOM('').window;
+const DOMPurify = createDOMPurify(window);
+
 const envy = require('./envy_dbapi');
 
 envy.InitDB();
+
+function sanitize(datarr) {
+	for (var i = 0; i < datarr.length; i++) {
+		datarr[i].img_url = DOMPurify.sanitize(datarr[i].img_url);
+		datarr[i].tags = DOMPurify.sanitize(datarr[i].tags);
+	}
+	return datarr;
+}
 
 // Searches gender envy with tags and mode can be specific to AND or OR
 router.get('/envysearch', (req, res) => {
@@ -57,6 +71,7 @@ router.post('/makeenvy', (req, res) => {
 router.get('/envypost', (req, res) => {
 	const body = req.query;
 	let data = envy.GetPost(Number(body.id | 0));
+	data = sanitize(data);
 	res.render('gayfrogs/envy/envypost', { item: data[0] });
 })
 
@@ -71,7 +86,6 @@ router.get('/allenvy', (req, res) => {
 router.get('/genderenvy', (req, res) => {
 	const body = req.query;
 	let data = envy.GetPostsGender(envy.GENDER[body.gender], Number(body.page | 0));
-
 	res.render('gayfrogs/envy/envyposts', { items: data });
 });
 
