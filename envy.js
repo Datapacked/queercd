@@ -5,9 +5,14 @@ const envy = require('./envy_dbapi');
 
 envy.InitDB();
 
+router.get('/envy', (req, res) => {
+    res.status(200);
+    res.render('gayfrogs/envy/envy');
+});
+
 router.get('/makeenvy', (req, res) => {
 	res.status(200);
-	res.render('gayfrogs/makeenvy');
+	res.render('gayfrogs/envy/makeenvy');
 });
 
 router.post('/makeenvy', (req, res) => {
@@ -25,7 +30,12 @@ router.post('/makeenvy', (req, res) => {
 router.get('/allenvy', (req, res) => {
     const body = req.query;
     res.send(envy.GetAllPosts(Number(body.page | 0)));
-})
+});
+
+router.get('/genderenvy', (req, res) => {
+    const body = req.query;
+    res.send(envy.GetPostsGender(envy.GENDER[body.gender], Number(body.page | 0)));
+});
 
 module.exports = router;
 

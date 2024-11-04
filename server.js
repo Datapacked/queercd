@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 // const https = require('https');
 const fs = require('fs');
+const path = require('path');
 const PORT = 27576;
 
 // var key = fs.readFileSync(__dirname + '/certs_donotuse/selfsigned.key');
@@ -21,6 +22,7 @@ app.use(compression());
 const gayfrogs = require('./gayfrogs');
 app.use('/gayfrogs',  gayfrogs);
 
+app.locals.pagesRoot = path.dirname(require.main.filename) + "/pages";
 
 app.set('view engine', 'ejs');
 

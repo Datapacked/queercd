@@ -1,0 +1,97 @@
+/* @import url(../common.css); */
+
+@import url('./fonts.css');
+
+.envy-navbar {
+    --main-background-color: #1b0029;
+    --item-background-color: #210033;
+}
+
+a {
+    margin: 20px;
+    color: whitesmoke;
+    text-decoration: none;
+}
+
+a :visited {
+    color: whitesmoke;
+    text-decoration: none;
+}
+
+ul {
+    font-family: 'Product Sans';
+}
+
+@media screen and (min-aspect-ratio: 1/1) {
+    .envy-navbar * {
+        display: flex;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        flex-grow: 1;  /* Allow items to grow proportionally */
+        flex-basis: 0;   /* Set initial size to 0 */
+        font-family: 'Space Mono';
+        color: whitesmoke;
+        background-color: var(--main-background-color);
+        margin: 1vh 1vw 1vh 1vw;
+        height: 4vh;
+    }
+
+    .envy-navbar {
+        top: 0;
+        left: 0;            /* Start from the leftmost point */
+        width: 100%;        /* Stretch horizontally across the entire screen */
+        /* Optional styles for the envy-navbar */
+        background-color: var(--item-background-color); /* Set a background color */
+        justify-content: space-between;
+        display: flex;
+        align-items: center;
+        padding: 0 0 0 0;
+        height: 7.5vh;
+    }
+
+	.news-article-link {
+		height: min(max(3vh, 10px), 40px);
+		padding: 1vh 0vw 1vh 0vw;
+		margin: 0 0 0 0;
+
+		font-size: min(max(2.25vh, 12px), 36px);
+	}
+}
+
+@media screen and (max-aspect-ratio: 1/1) {
+    .envy-navbar * {
+        display: flex;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        flex-grow: 1;  /* Allow items to grow proportionally */
+        flex-basis: 0;   /* Set initial size to 0 */
+        font-family: 'Space Mono';
+        color: whitesmoke;
+        background-color: var(--main-background-color);
+        margin: 1vh 1vw 1vh 1vw;
+        height: 7.5vh;
+    }
+
+    .envy-navbar {
+        top: 0;
+        left: 0;            /* Start from the leftmost point */
+        width: 100%;        /* Stretch horizontally across the entire screen */
+        /* Optional styles for the envy-navbar */
+        background-color: var(--item-background-color); /* Set a background color */
+        justify-content: space-between;
+        display: flex;
+        align-items: center;
+        padding: 0 0 0 0;
+        height: 12.5vh;
+    }
+
+	.news-article-link {
+		height: min(max(5vh, 10px), 40px);
+		padding: 1vh 0vw 1vh 0vw;
+		margin: 0 0 0 0;
+
+		font-size: min(max(2.75vh, 12px), 36px);
+	}
+}
