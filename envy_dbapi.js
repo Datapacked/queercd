@@ -47,7 +47,7 @@ module.exports.AddEnvy = (img_url, gender, tags) => {
 	"INSERT or REPLACE INTO envy (img_url, gender, tags) VALUES (?, ?, ?)",
 	);
 	// Execute the prepared statement with bound values.
-	insert.run(img_url, gender, tags);
+	insert.run(img_url, gender, `,${tags},`);
 	db.close();
   } catch {
 	return 500;
@@ -166,7 +166,7 @@ module.exports.GetPostsAnd = (tags, pagenum = 0, pagesize = 50) => {
   let db = better(DBNAME);
   var criteria = "";
   tags.split(',').forEach((k, i) => {
-	criteria = criteria + " tags LIKE \'%" + k + "%\' AND";
+	criteria = criteria + " tags LIKE \'%," + k + ",%\' AND";
   });
   criteria = criteria.substring(0, criteria.length - 4);
   let query = (
@@ -193,7 +193,7 @@ module.exports.GetPostsOr = (tags, pagenum = 0, pagesize = 50) => {
   let db = better(DBNAME);
   var criteria = "";
   tags.split(',').forEach((k, i) => {
-	criteria = criteria + " tags LIKE \'%" + k + "%\' OR";
+	criteria = criteria + " tags LIKE \'%," + k + ",%\' OR";
   });
   criteria = criteria.substring(0, criteria.length - 3);
   let query = (
@@ -221,7 +221,7 @@ module.exports.GetPostsGenderAnd = (gender, tags, pagenum = 0, pagesize = 50) =>
   let db = better(DBNAME);
   var criteria = "";
   tags.split(',').forEach((k, i) => {
-	criteria = criteria + " tags LIKE \'%" + k + "%\' AND";
+	criteria = criteria + " tags LIKE \'%," + k + ",%\' AND";
   });
   criteria = criteria.substring(0, criteria.length - 4);
   let query = (
@@ -250,7 +250,7 @@ module.exports.GetPostsGenderOr = (gender, tags, pagenum = 0, pagesize = 50) => 
   let db = better(DBNAME);
   var criteria = "";
   tags.split(',').forEach((k, i) => {
-	criteria = criteria + " tags LIKE \'%" + k + "%\' OR";
+	criteria = criteria + " tags LIKE \'%," + k + ",%\' OR";
   });
   criteria = criteria.substring(0, criteria.length - 3);
   let query = (

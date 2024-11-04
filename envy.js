@@ -16,13 +16,12 @@ router.post('/envysearch', (req, res) => {
 	const tags = body.input2;
 	const gender = body.dropdown;
 	const mode = body.dropdown2;
-	console.log(body);
 	const hasNoTag = (tags == '');
 	const hasNoGender = (gender == 'any');
 	if (hasNoTag && hasNoGender) {
 		res.redirect('./allenvy');
 	} else if (!hasNoTag && hasNoGender) {
-		res.redirect('./envytags&mode=' + mode + '&tags=' + encodeURIComponent(tags));
+		res.redirect('./envytags?mode=' + mode + '&tags=' + encodeURIComponent(tags));
 	} else if (hasNoTag && !hasNoGender) {
 		res.redirect('./genderenvy?gender=' + gender);
 	} else if (!hasNoTag && !hasNoGender) {
