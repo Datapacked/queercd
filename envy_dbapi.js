@@ -59,17 +59,34 @@ module.exports.AddEnvy = (img_url, gender, tags) => {
  * @brief Gets specific post
  * 
  * @param {BigInt} id 
- * @returns {BigInt} status
+ * @returns {Object} posts
  */
 module.exports.GetPost = (id) => {
-  // Sends N posts
-  let db = better(DBNAME);
-  let query = ("SELECT * FROM envy WHERE id = " + id);
-  // console.log(query);
-  let select = db.prepare(query,);
-  let posts = select.all();
-  db.close();
-  return posts;
+	// Sends N posts
+	let db = better(DBNAME);
+	let query = ("SELECT * FROM envy WHERE id = " + id);
+	// console.log(query);
+	let select = db.prepare(query,);
+	let posts = select.all();
+	db.close();
+	return posts;
+};
+
+/**
+ * @brief Deletes specific post
+ * 
+ * @param {BigInt} id 
+ * @returns {BigInt} status
+ */
+module.exports.DeletePost = (id) => {
+	// Sends N posts
+	let db = better(DBNAME);
+	let query = ("DELETE FROM envy WHERE id =" + id);
+	// console.log(query);
+	let select = db.prepare(query,);
+	select.run();
+	db.close();
+	return 200;
 };
 
 /**

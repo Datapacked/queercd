@@ -4,6 +4,14 @@ const router = express.Router();
 const createDOMPurify = require('dompurify');
 const { JSDOM } = require('jsdom');
 
+const crypto = require('crypto');
+
+function sha256(data) {
+  const hash = crypto.createHash('sha256');
+  hash.update(data);
+  return hash.digest('hex');
+}
+
 const window = new JSDOM('').window;
 const DOMPurify = createDOMPurify(window);
 
@@ -73,7 +81,20 @@ router.get('/envypost', (req, res) => {
 	let data = envy.GetPost(Number(body.id | 0));
 	data = sanitize(data);
 	res.render('gayfrogs/envy/envypost', { item: data[0] });
-})
+});
+
+// Returns page for singular post
+router.get('/delenvy', (req, res) => {
+	const body = req.query;
+	const pass = (body.pass === undefined) ? ":3" : body.pass;
+	if (sha256(pass) != '6a0cde29b63ca512c6bc08ac94c5804279bfde90dc42ec704d81dede2ffa48fe') {
+		res.status(403);
+		res.send("<h1>Unauthorized!</h1>");
+		return;
+	}
+	envy.DeletePost(Number(body.id | 0));
+	res.send("Deleted!");
+});
 
 // Returns all envy, page specified with page query
 router.get('/allenvy', (req, res) => {
