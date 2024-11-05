@@ -6,6 +6,8 @@ const { JSDOM } = require('jsdom');
 
 const crypto = require('crypto');
 
+require('dotenv').config();
+
 function sha256(data) {
   const hash = crypto.createHash('sha256');
   hash.update(data);
@@ -87,7 +89,7 @@ router.get('/envypost', (req, res) => {
 router.get('/delenvy', (req, res) => {
 	const body = req.query;
 	const pass = (body.pass === undefined) ? ":3" : body.pass;
-	if (sha256(pass) != 'c1cbbbed9e6c912e460e9fe8d51f7e8ae61ae9ef3b23013cdf86583489618c39') {
+	if (sha256(pass) != sha256(process.env.PASS)) {
 		res.status(403);
 		res.send("<h1>Unauthorized!</h1>");
 		return;
