@@ -1,11 +1,20 @@
-.post {
+.masonry-container {
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-	gap: 20px;
-}
-
-.post > img {
-	width: 20vw;
-	max-width: 20vw;
+	grid-template-columns: repeat(4, 24vw); /* Adjust column width as needed */
+	grid-template-rows: masonry;
+	gap: 1vw; /* Adjust gap between items as needed */
 }
   
+.masonry-item {
+	width: 24vw;
+}
+
+.masonry-item a {
+	margin: 0 0 0 0;
+}
+
+.masonry-item img {
+	width: 100%;
+	height: auto;
+	object-fit: cover; /* This will scale the image to fill the container */
+}

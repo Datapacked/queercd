@@ -1,7 +1,8 @@
+<!doctype html>
 <html>
 	<link href="/common.css" rel="stylesheet" type="text/css">
 	<link href="/css/envy.css" rel="stylesheet" type="text/css">
-	<link href="/css/envypost.css">
+	<link href="/css/envypost.css" rel="stylesheet" type="text/css">
 	<head>
 		<script>
 			const urlParams = new URLSearchParams(window.location.search);
@@ -49,13 +50,15 @@
 	<body class="darkmode">
 		<%- include('envy-subnavbar') %>
 		<button onclick="incrementPage()">Next Page</button>
-    	<button onclick="decrementPage()">Previous Page</button>
-		<% for (let item of items) { %>
-			<div class="post">
-				<a href="./envypost?id=<%= item['id'] %>">
-					<img src="<%= item['img_url'] %>" alt="<%= item['img_url'] %>"/>
-				</a>
-			</div>
-		<% } %>
+		<button onclick="decrementPage()">Previous Page</button>
+		<div class="masonry-container">
+			<% for (let item of items) { %>
+				<div class="masonry-item">
+					<a href="./envypost?id=<%= item['id'] %>">
+						<img src="<%= item['img_url'] %>" alt="<%= item['img_url'] %>"/>
+					</a>
+				</div>
+			<% } %>
+		</div>
 	</body>
 </html>
