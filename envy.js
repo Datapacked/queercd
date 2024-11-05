@@ -87,7 +87,7 @@ router.get('/envypost', (req, res) => {
 router.get('/delenvy', (req, res) => {
 	const body = req.query;
 	const pass = (body.pass === undefined) ? ":3" : body.pass;
-	if (sha256(pass) != '6a0cde29b63ca512c6bc08ac94c5804279bfde90dc42ec704d81dede2ffa48fe') {
+	if (sha256(pass) != 'c1cbbbed9e6c912e460e9fe8d51f7e8ae61ae9ef3b23013cdf86583489618c39') {
 		res.status(403);
 		res.send("<h1>Unauthorized!</h1>");
 		return;
