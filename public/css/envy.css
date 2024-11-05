@@ -10,6 +10,10 @@
 		margin-right: 2vw;
 		font-size: 1.25vw;
 	}
+
+	.envyform > label.smaller {
+		font-size: 1vw;
+	}
 	
 	.envyform > .gap {
 		margin-top: 4vh;
@@ -22,6 +26,10 @@
 		font-family: 'Space Mono';
 		margin-right: 2vw;
 		font-size: 2.5vw;
+	}
+
+	.envyform > label.smaller {
+		font-size: 2vw;
 	}
 	
 	.envyform > .gap {
